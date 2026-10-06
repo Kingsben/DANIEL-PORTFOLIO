@@ -1,0 +1,401 @@
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  z-index: 1000;
+
+  /*
+    Dark enough to remain visible over both
+    the hero image and white sections.
+  */
+  background: rgba(11, 22, 40, 0.48);
+
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    0 5px 22px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+
+/* =========================================
+   NAVBAR CONTAINER
+========================================= */
+
+.navbar-container {
+  width: 100%;
+  max-width: 1400px;
+
+  height: 64px;
+
+  margin: 0 auto;
+
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  text-decoration: none;
+
+  flex-shrink: 0;
+}
+
+.navbar-logo {
+  width: 34px;
+  height: 34px;
+
+  object-fit: contain;
+}
+
+.navbar-brand-text {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.navbar-name {
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  line-height: 1;
+}
+
+.navbar-subtitle {
+  color: rgba(255, 255, 255, 0.70);
+
+  font-size: 7px;
+
+  font-weight: 500;
+
+  letter-spacing: 1.3px;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   DESKTOP NAVIGATION
+========================================= */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 30px;
+
+  height: 100%;
+}
+
+.nav-item {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 64px;
+
+  color: rgba(255, 255, 255, 0.94);
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.1px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #e47b2c;
+
+  transform: translateY(-1px);
+}
+
+.nav-item.active {
+  color: #e47b2c;
+}
+
+
+/* =========================================
+   ACTIVE INDICATOR
+========================================= */
+
+.nav-item::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 8px;
+
+  width: 0;
+  height: 2px;
+
+  background: #e47b2c;
+
+  transform: translateX(-50%);
+
+  transition: width 0.2s ease;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 18px;
+}
+
+
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
+
+.mobile-toggle {
+  display: none;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+}
+
+.mobile-toggle span {
+  width: 21px;
+  height: 2px;
+
+  background: #ffffff;
+
+  transition: 0.25s ease;
+}
+
+.mobile-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
+
+.mobile-nav {
+  display: none;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+
+  .navbar-container {
+    padding: 0 28px;
+  }
+
+  .desktop-nav {
+    gap: 23px;
+  }
+
+  .nav-item {
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .navbar {
+    /*
+      Still glassy, but darker so it stays
+      visible over light sections.
+    */
+    background: rgba(11, 22, 40, 0.52);
+
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+  }
+
+  .navbar-container {
+    height: 60px;
+
+    padding: 0 18px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .navbar-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navbar-brand {
+    gap: 9px;
+  }
+
+  .navbar-name {
+    font-size: 12px;
+
+    letter-spacing: 0.9px;
+  }
+
+  .navbar-subtitle {
+    font-size: 6px;
+
+    letter-spacing: 1.1px;
+  }
+
+
+  /* =====================================
+     MOBILE DROPDOWN
+  ===================================== */
+
+  .mobile-nav {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 8px 20px 15px;
+
+    background: rgba(11, 22, 40, 0.72);
+
+    backdrop-filter: blur(22px) saturate(135%);
+    -webkit-backdrop-filter: blur(22px) saturate(135%);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+      max-height 0.3s ease,
+      opacity 0.25s ease;
+  }
+
+  .mobile-nav.show {
+    max-height: 450px;
+
+    opacity: 1;
+  }
+
+  .mobile-nav-item {
+    height: 43px;
+
+    padding: 0 5px;
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    border-bottom: 1px solid
+      rgba(255, 255, 255, 0.09);
+  }
+
+  .mobile-nav-item.active,
+  .mobile-nav-item:hover {
+    color: #e47b2c;
+  }
+
+  .mobile-nav-item:last-child {
+    border-bottom: none;
+  }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 400px) {
+
+  .navbar-container {
+    padding: 0 15px;
+  }
+
+  .navbar-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navbar-name {
+    font-size: 11px;
+  }
+
+  .navbar-subtitle {
+    display: none;
+  }
+}
