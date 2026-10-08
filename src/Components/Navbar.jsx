@@ -1,30 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "../assets/daniel-logo.png";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/#home", icon: "⌂" },
+    { name: "About", href: "/#about", icon: "◌" },
+    { name: "Skills", href: "/#skills", icon: "⌘" },
+    { name: "Experience", href: "/#experience", icon: "◫" },
+    { name: "Projects", href: "/#projects", icon: "▧" },
   ];
+
+  useEffect(() => {
+    const updateScrollState = () => setHasScrolled(window.scrollY > 24);
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${hasScrolled ? "is-scrolled" : ""}`}>
       <div className="navbar-container">
 
         {/* Logo / Brand */}
         <a
-          href="#home"
+          href="/#home"
           className="navbar-brand"
           onClick={closeMenu}
         >
@@ -59,6 +66,8 @@ function Navbar() {
           ))}
         </nav>
 
+        <a className="navbar-cta" href="/#contact">GET IN TOUCH</a>
+
 
         {/* Mobile Button */}
         <button
@@ -66,7 +75,7 @@ function Navbar() {
             menuOpen ? "open" : ""
           }`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={menuOpen}
         >
           <span></span>
@@ -83,6 +92,8 @@ function Navbar() {
           menuOpen ? "show" : ""
         }`}
       >
+        <div className="mobile-drawer-header"><span>MENU</span><button type="button" onClick={closeMenu} aria-label="Close navigation">×</button></div>
+        <span className="mobile-nav-label">MAIN</span>
         {navItems.map((item) => (
           <a
             key={item.name}
@@ -90,10 +101,15 @@ function Navbar() {
             className="mobile-nav-item"
             onClick={closeMenu}
           >
-            {item.name}
+              <span><span className="mobile-nav-icon" aria-hidden="true">{item.icon}</span>{item.name}</span><span aria-hidden="true">→</span>
           </a>
         ))}
+        <a href="/#contact" className="mobile-nav-item" onClick={closeMenu}><span><span className="mobile-nav-icon" aria-hidden="true">✉</span>Contact</span><span aria-hidden="true">→</span></a>
+        <span className="mobile-nav-label mobile-nav-label-more">MORE</span>
+        <a href="/gallery" className="mobile-nav-item" onClick={closeMenu}><span><span className="mobile-nav-icon" aria-hidden="true">▤</span>Gallery</span><span aria-hidden="true">→</span></a>
+        <a href="/#contact" className="mobile-nav-cta" onClick={closeMenu}>GET IN TOUCH</a>
       </nav>
+      {menuOpen && <button type="button" className="mobile-nav-backdrop" aria-label="Close navigation" onClick={closeMenu} />}
     </header>
   );
 }

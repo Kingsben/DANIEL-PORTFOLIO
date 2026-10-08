@@ -1,4 +1,5 @@
 import "./Contact.css";
+import GithubIcon from "./GithubIcon";
 
 function Contact() {
   return (
@@ -31,17 +32,17 @@ function Contact() {
 
           <address className="contact-details">
             <div className="contact-detail contact-email">
-              <span>EMAIL</span>
+              <div className="contact-detail-heading"><span className="contact-detail-icon" aria-hidden="true">✉</span><span>EMAIL</span></div>
               <a href="mailto:danielboateng.eng@gmail.com">
                 danielboateng.eng@gmail.com
               </a>
             </div>
             <div className="contact-detail">
-              <span>PHONE</span>
+              <div className="contact-detail-heading"><span className="contact-detail-icon" aria-hidden="true">☎</span><span>PHONE</span></div>
               <a href="tel:+447440515692">07440 515692</a>
             </div>
             <div className="contact-detail">
-              <span>LOCATION</span>
+              <div className="contact-detail-heading"><span className="contact-detail-icon" aria-hidden="true">⌖</span><span>LOCATION</span></div>
               <p>Birmingham, UK</p>
             </div>
           </address>
@@ -52,14 +53,14 @@ function Contact() {
               target="_blank"
               rel="noreferrer"
             >
-              LINKEDIN <span aria-hidden="true">↗</span>
+              <span className="contact-social-icon" aria-hidden="true">in</span> LINKEDIN <span aria-hidden="true">↗</span>
             </a>
             <a
               href="https://github.com/danbuildseng99"
               target="_blank"
               rel="noreferrer"
             >
-              GITHUB <span aria-hidden="true">↗</span>
+              <span className="contact-social-icon contact-social-icon-github" aria-hidden="true"><GithubIcon /></span> GITHUB <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>

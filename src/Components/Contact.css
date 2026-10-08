@@ -64,12 +64,12 @@
 
 .contact-content {
   display: grid;
-  grid-template-columns: minmax(230px, 0.75fr) minmax(0, 1.25fr);
-  column-gap: 80px;
-  row-gap: 48px;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: 40px 72px;
   margin-top: 78px;
   padding-top: 38px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  align-items: start;
 }
 
 .contact-cta {
@@ -81,6 +81,7 @@
   width: fit-content;
   min-height: 58px;
   padding: 0 22px;
+  border-radius: 10px;
   background: #e47b2c;
   color: #ffffff;
   font-size: 11px;
@@ -103,13 +104,46 @@
 .contact-details {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) 0.8fr 0.85fr;
-  gap: 28px;
+  gap: 24px;
   font-style: normal;
+  align-self: start;
+}
+
+.contact-detail {
+  min-width: 0;
 }
 
 .contact-detail > span {
   margin-bottom: 12px;
   font-size: 9px;
+}
+
+.contact-detail-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.contact-detail-heading > span:last-child {
+  color: #e47b2c;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.contact-detail-icon,
+.contact-social-icon {
+  display: inline-grid;
+  width: 23px;
+  height: 23px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .contact-detail a,
@@ -128,31 +162,54 @@
 }
 
 .contact-socials {
-  grid-column: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 30px;
+  gap: 10px;
+  align-items: center;
 }
 
 .contact-socials a {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  color: rgba(255, 255, 255, 0.8);
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #ffffff;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.13em;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .contact-socials a:hover {
-  color: #e47b2c;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.contact-socials a .contact-social-icon { color: #ffffff; }
+
+.contact-socials a .contact-social-icon-github {
+  border: 0;
+  border-radius: 0;
+  color: #8b949e;
+}
+
+.contact-social-icon-github svg {
+  width: 20px;
+  height: 20px;
 }
 
 .contact-socials span {
-  color: #e47b2c;
+  color: #ffffff;
   font-size: 15px;
+}
+
+.contact-socials .contact-social-icon-github {
+  color: #8b949e;
 }
 
 .contact-cta:focus-visible,
@@ -179,7 +236,7 @@
 
   .contact-content {
     grid-template-columns: 1fr;
-    gap: 42px;
+    gap: 36px;
     margin-top: 62px;
   }
 
@@ -188,7 +245,7 @@
   }
 
   .contact-socials {
-    grid-column: auto;
+    padding-top: 0;
   }
 }
 
@@ -247,5 +304,16 @@
   .contact-detail p {
     font-size: 14px;
   }
-}
 
+  .contact-detail a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    max-width: 100%;
+  }
+
+  .contact-socials a {
+    flex: 1 1 150px;
+    justify-content: center;
+  }
+}
